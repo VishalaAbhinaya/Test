@@ -1,0 +1,31 @@
+    @Test(timeout = 240000)
+    public void {TestMethodName}() throws Exception {
+
+                    //reading the ACT file that was checked in perforce
+                    FileInputStream fis = new FileInputStream("{actPath}");
+                    InputStreamReader in = new InputStreamReader(fis, "UTF-8");
+                    BufferedReader br = new BufferedReader(in);
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                    br.close();
+
+                    System.out.println(" Executing {actPath} ");
+                    //running the test
+                    Holder output = new Holder();
+                    Holder error = new Holder();
+                    Holder results = new Holder();
+
+                    mnWebService.getMnRemoteActWebSvcPort().executeAct(
+                            sb.toString(),
+                            output,
+                            error,
+                            results
+                    );
+                    System.out.println("\nDebug  logs :\n" + output.value);
+                    System.out.println("\nError logs :\n" + error.value);
+                    System.out.println("\nResults logs :\n" + results.value);
+                    assert (results.value.equals("true"));
+    }

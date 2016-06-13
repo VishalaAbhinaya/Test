@@ -1,0 +1,12 @@
+com\modeln\ws\remoteact\types\ObjectFactory.class
+com\modeln\ws\remoteact\MnRemoteActWebSvcService.class
+com\modeln\ws\remoteact\types\package-info.class
+com\modeln\generator\ModelNDynamicWrapperTestGenerator.class
+com\modeln\ws\remoteact\MnRemoteActWebSvcPortType.class
+com\modeln\ws\remoteact\types\ExecuteAct.class
+com\modeln\ws\remoteact\types\WSTestResultResult.class
+com\modeln\sqin\reporting\SQINBatamConnector.class
+com\modeln\sqin\packaging\SQINLibraryPacker.class
+com\modeln\sqin\packaging\SQINLibraryLoader.class
+com\modeln\generator\ModelNContextManagementWrapperGenerator.class
+com\modeln\ws\remoteact\handler\CredentialInjectHandler.class

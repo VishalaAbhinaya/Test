@@ -1,0 +1,60 @@
+package modeln;
+
+/**
+ * Created by IntelliJ IDEA.
+ * User: jbpringuey
+ * Date: Nov 24, 2012
+ * Time: 7:21:53 PM
+ * This is a generated class, change ClassTestTemplate.tmpl if needed to modify this class and
+ * MethodTestTemplate.tmpl if needed to modify the unit test method.
+ * In order to leverage the parallel run feature of maveen surefire, we need to have all test in the same suite.
+ */
+
+import org.junit.*;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
+import com.modeln.ws.remoteact.MnRemoteActWebSvcService;
+
+import javax.xml.ws.Holder;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import javax.xml.ws.WebServiceException;
+import java.util.Iterator;
+import javax.xml.soap.*;
+import javax.xml.ws.soap.SOAPFaultException;
+
+@FixMethodOrder(org.junit.runners.MethodSorters.NAME_ASCENDING)
+public class {ClassName} {
+
+      /**
+        * Initialize the WebService only once to avoid multiple connections to the app server
+        * and increase the risk of hitting a connection refused error.
+        * Tests within the class will run in series
+        */
+
+        private static MnRemoteActWebSvcService init(int retrycount) {
+          try{
+                return new MnRemoteActWebSvcService();
+             }catch(WebServiceException e){
+                if(retrycount>0){
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e1) {
+                        throw new RuntimeException(e1);
+                    }
+                    System.out.println(" Failed to connect to the webservice, double check the URL, username and password ");
+                    return init(retrycount-1);
+                }else{
+                    throw e;
+                }
+             }
+        }
+
+        private static MnRemoteActWebSvcService  mnWebService = init(30);
+
+        {TestMethods}
+
+}
+
